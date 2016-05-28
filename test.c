@@ -24,3 +24,8 @@ void min(int a, int b)
 {
 	return a<b? a: b;
 }
+
+void print(int a, int b)
+{
+	return 0;
+}

@@ -41,4 +41,20 @@ git checkout -b <name>：创建+切换分支
 
 git merge <name>：合并某分支到当前分支
 
+git merge --no-ff：禁用fast-forward模式的合并，fast-forward模式合并会丢失分支信息
+
 git branch -d <name>：删除分支
+
+git log --graph --pretty=oneline --abbrev-commit：查看分支合并图
+
+git stash：保存工作现场
+
+git stash list：查看保存的工作现场
+
+git stash apply：恢复工作现场但是不删除stash信息
+
+git stash drop：删除stash信息
+
+git stash pop：恢复工作现场的同时删除stash信息
+
+git branch -D <name>：强行删除某个分支

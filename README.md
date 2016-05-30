@@ -1,5 +1,14 @@
 # 如何使用git:
 
+git config --global user.name "Your Name"：配置自己的名字
+
+git config --global user.email "blabla@blabla.com"：配置自己的电邮
+
+git config --global color.ui true：让git适时显示不同颜色
+
+git config --global alias.new_cmd_name cmd_name：给git命令取别名，比如git config --global alias.ad add
+，git config --global alias.cm commit
+
 git init：初始化一个Git仓库
 
 git add <file>：添加文件到缓存区
@@ -81,3 +90,22 @@ git push origin :refs/tags/<tagname>：删除一个远程标签
 git tag -a <tag_name> -m "blablabla"：指定标签信息
 
 git tag -s <tag_name> -m "blablabla..."：PGP签名标签
+
+# 如何参与一个开源项目
+
+  1.在GitHub上，Fork希望参与的项目，然后自己的GitHub账号下就复制了这个项目
+
+  2.然后从自己的Fork仓库下克隆到本地，这样才有权限修改和推送，若从原作者的项目克隆将因为没有权限而无法推送和修改
+
+  3.比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页https://github.com/twbs/bootstrap，点“Fork”就会在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
+        git clone git@github.com:syrozhang/bootstrap.git
+  Bootstrap的官方仓库twbs/bootstrap、你在GitHub上克隆的仓库my/bootstrap，以及你自己克隆到本地电脑的仓库，他们的关系就像下图显示的那样：
+    GitHub[Bootstrap的官方仓库twbs/bootstrap、你在GitHub上克隆的仓库my/bootstrap] ===> 本地PC[bootstrap]
+
+如果你想修复bootstrap的一个bug，或者新增一个功能，立刻就可以开始干活，干完后，往自己的仓库推送。
+如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。
+当然，对方是否接受你的pull request就不一定了。
+
+#忽略特殊文件
+
+在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。不需要从头写.gitignore文件，GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：https://github.com/github/gitignore。检验.gitignore的标准是git status命令是不是说working directory clean

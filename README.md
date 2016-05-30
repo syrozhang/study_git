@@ -34,9 +34,13 @@ git branch：查看分支
 
 git branch <name>：创建分支
 
+git branch --set-upstream branch-name origin/branch-name：关联远程代码库分支和本地分支
+
 git checkout <name>：切换分支
 
 git checkout -b <name>：创建+切换分支
+
+git checkout -b <branch_name> origin/<branch_name>：创建远程代码库分支的本地分支
 
 git merge <name>：合并某分支到当前分支
 
@@ -44,7 +48,7 @@ git merge --no-ff：禁用fast-forward模式的合并，fast-forward模式合并
 
 git branch -d <name>：删除分支
 
-git log --graph --pretty=oneline --abbrev-commit：查看分支合并图
+git log --graph --pretty=oneline --abbrev-commit：查看分支合并图和提交记录
 
 git stash：保存工作现场
 
@@ -57,3 +61,23 @@ git stash drop：删除stash信息
 git stash pop：恢复工作现场的同时删除stash信息
 
 git branch -D <name>：强行删除某个分支
+
+git pull：下载远程代码库分支并合并
+
+git tag：查看所有标签
+
+git tag <tag_name>：给HEAD提交打标签
+
+git tag <tag_name> <commit_id>：给commit_id提交打标签
+
+git tag -d <tag_name>：删除本地标签
+
+git push origin <tag_name>：上次tag_name标签
+
+git push origin --tags：上次全部未上次的标签
+
+git push origin :refs/tags/<tagname>：删除一个远程标签
+
+git tag -a <tag_name> -m "blablabla"：指定标签信息
+
+git tag -s <tag_name> -m "blablabla..."：PGP签名标签

@@ -97,7 +97,7 @@ git tag -s <tag_name> -m "blablabla..."：PGP签名标签
 
   2.然后从自己的Fork仓库下克隆到本地，这样才有权限修改和推送，若从原作者的项目克隆将因为没有权限而无法推送和修改
 
-  3.比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页https://github.com/twbs/bootstrap，点“Fork”就会在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
+  3.比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页https://github.com/twbs/bootstrap， 点“Fork”就会在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
         git clone git@github.com:syrozhang/bootstrap.git
   Bootstrap的官方仓库twbs/bootstrap、你在GitHub上克隆的仓库my/bootstrap，以及你自己克隆到本地电脑的仓库，他们的关系就像下图显示的那样：
     GitHub[Bootstrap的官方仓库twbs/bootstrap、你在GitHub上克隆的仓库my/bootstrap] ===> 本地PC[bootstrap]
@@ -108,4 +108,4 @@ git tag -s <tag_name> -m "blablabla..."：PGP签名标签
 
 #忽略特殊文件
 
-在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。不需要从头写.gitignore文件，GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：https://github.com/github/gitignore。检验.gitignore的标准是git status命令是不是说working directory clean
+在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。不需要从头写.gitignore文件，GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览： https://github.com/github/gitignore。检验.gitignore的标准是git status命令是不是说working directory clean

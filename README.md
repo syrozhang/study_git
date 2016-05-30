@@ -1,5 +1,4 @@
-# study_git
-如何使用git:
+# 如何使用git:
 
 git init：初始化一个Git仓库
 
@@ -27,7 +26,7 @@ ssh-keygen -t rsa -C "your_email@example.com"：创建SSH Key，在用户目录�
 
 git remote add origin git@github.com:blabla/blabla.git：关联一个远程代码库，origin是远程库的默认名字
 
-git push -u origin master：第一次把本地代码库发送到远程代码库，之后只需要用git push origin master即可
+git push -u origin master：第一次把本地代码库发送到远程代码库master分支，之后只需要用git push origin master即可
 
 git clone git@github.com:blabla/blabla.git：把远程代码库复制到本地
 

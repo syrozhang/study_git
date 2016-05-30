@@ -1,0 +1,251 @@
+#/**************************************************************************
+# *                                                                        *
+# *         Copyright (c) 2002 by Sunplus Technology Co., Ltd.             *
+# *                                                                        *
+# *  This software is copyrighted by and is the property of Sunplus        *
+# *  Technology Co., Ltd. All rights are reserved by Sunplus Technology    *
+# *  Co., Ltd. This software may only be used in accordance with the       *
+# *  corresponding license agreement. Any unauthorized use, duplication,   *
+# *  distribution, or disclosure of this software is expressly forbidden.  *
+# *                                                                        *
+# *  This Copyright notice MUST not be removed or modified without prior   *
+# *  written consent of Sunplus Technology Co., Ltd.                       *
+# *                                                                        *
+# *  Sunplus Technology Co., Ltd. reserves the right to modify this        *
+# *  software without notice.                                              *
+# *                                                                        *
+# *  Sunplus Technology Co., Ltd.                                          *
+# *  19, Innovation First Road, Science-Based Industrial Park,             *
+# *  Hsin-Chu, Taiwan, R.O.C.                                              *
+# *                                                                        *
+# *  Author: Timothy Wu                                                    *
+# *                                                                        *
+# **************************************************************************/
+PREFIX = c:/Progra~1/Sunplus/MIDE/bin/
+
+#---------------------------------------------------------------------------
+# Variable definition:
+#   1. Cross-compling tools
+#   2. Linker script file
+#   3. C complier options
+#   4. Assembly compiler options
+#   5. Linker options
+#---------------------------------------------------------------------------
+CC      = $(PREFIX)gcc
+AS      = $(PREFIX)as
+LD      = $(PREFIX)ld
+AR      = $(PREFIX)ar
+OBJDUMP = $(PREFIX)objdump
+OBJCOPY = $(PREFIX)objcopy
+NM      = $(PREFIX)nm
+ECHO    = echo
+IMG2BIN = $(PREFIX)img2bin
+
+LDSCRIPT = spca536nand_ii.ld
+GOAL = spca536nand
+CFLAGS = \
+	-gstabs+ \
+	-Wall \
+	-w \
+	-DRAM_PROGRAM \
+	-DNAND_BOOT_WORKAROUND \
+	-mips1 \
+	-mcpu=r3900 \
+	-mgp32 \
+	-ansi \
+	-nostartfiles \
+	-I../include/ \
+	-I../include/hwinclude/ \
+	-I../include/image/ \
+	-G 64 \
+	-O2 \
+	--std=c99 
+
+CFLAGS1 = \
+	-gstabs+ \
+	-Wall \
+	-DRAM_PROGRAM \
+	-DNAND_BOOT_WORKAROUND \
+	-mips1 \
+	-mcpu=r3900 \
+	-mgp32 \
+	-ansi \
+	-nostartfiles \
+	-I../include/ \
+	-I../include/hwinclude/ \
+	-I../include/image/ \
+	-G 64 \
+	-O2 \
+	--std=c99 
+	
+CFLAGS2 = \
+	-gstabs+ \
+	-Wall \
+	-mips1 \
+	-mcpu=r3900 \
+	-mgp32 \
+	-ansi \
+	-nostartfiles \
+	-I../include/ \
+	-I../include/hwinclude/ \
+	-G 0 \
+	-O2 
+
+
+ASFLAGS = \
+	-x \
+	assembler-with-cpp
+
+LDFLAGS = -T $(LDSCRIPT)
+
+GOAL = spca536
+
+#---------------------------------------------------------------------------
+# Intermediate objects
+#---------------------------------------------------------------------------
+OBJS = \
+	crt0.o \
+	except.o \
+	init.o \
+	main.o \
+	sys_init.o \
+	irq_handler.o \
+	card.o \
+	appdohwfunc.o \
+	gpio.o \
+	osd_main.o \
+	ui_main.o \
+	ui_preview.o \
+	ui_mainmenu.o \
+	ui_movie.o \
+	ui_playback.o \
+	ui_setup.o \
+	ui_mp3.o \
+	ui_record.o \
+	exif_custom.o \
+	sys_info.o \
+	hw_front_tv656.o \
+	hw_front_saa7113.o \
+	i2c.o \
+	hw_cdsp_custom.o \
+	menu_capture.o \
+	badpix.o \
+	LC15004.o \
+	panel.o \
+	disp_ser_ctrl.o \
+	stillpb_custom.o \
+	xiaoao.o \
+	q_table.o \
+	menu_playback.o \
+	ui_accessories.o \
+	ui_photo.o \
+	uistrings.o \
+	dps_custom.o \
+	tv_ov.o \
+	snap_custom.o \
+	TestApiReg.o \
+	uart1.o \
+	uart.o \
+	aaa.o \
+	aaa_api.o \
+	hw_front_ov9650.o \
+	ebook.o
+	
+#	dpof_event.o \
+#	menu_setup.o \
+#	menu_api.o \
+#	menu.o \
+
+#---------------------------------------------------------------------------
+# Libraries not provided by GCC
+#---------------------------------------------------------------------------
+LIBS = \
+	../lib/libcmd.a \
+	../lib/libddx.a \
+	../lib/libsmc.a \
+	../lib/libsd.a \
+	../lib/libotg.a \
+	../lib/libusb.a \
+	../lib/libdps.a \
+	../lib/libsnap.a \
+	../lib/libdpof.a \
+	../lib/libdcf.a \
+	../lib/libdsp.a \
+	../lib/libspe.a \
+	../lib/libmisc.a \
+	../lib/lib2bdp.a \
+	../lib/libbnd.a \
+	../lib/libexif.a \
+	../lib/libasf.a \
+	../lib/libmov.a \
+	../lib/libgame.a\
+	../lib/libavi.a \
+	../lib/libaud.a \
+	../lib/libvfs.a \
+	../lib/libos.a \
+	../lib/libutil.a \
+	../lib/libhw.a \
+	../lib/libos.a \
+	../lib/libosd.a \
+	../lib/libsysg.a \
+	../lib/libpub.a \
+	../lib/libmp3.a \
+	../lib/libmp2.a \
+	../lib/libmp3en.a \
+	../lib/libvfs.a \
+	../lib/libcf.a \
+	../lib/libms.a \
+	../lib/libaac.a \
+	../lib/libhwcdsptool.a \
+	../lib/libwma.a \
+	../lib/libwmad.a \
+	../lib/libeffect.a \
+	../lib/libaffix.a \
+	../lib/libws9712.a \
+	../lib/liblrc.a \
+	../lib/libres.a \
+	
+	
+
+#	../lib/libmp3d.a
+#	../lib/libotg.a \
+#	../lib/libcmd.a \	
+#	../lib/lib3a.a	
+#---------------------------------------------------------------------------
+# Implicit rules
+#---------------------------------------------------------------------------
+%.d: %.c
+	@$(CC) -MM $(CFLAGS) -o $@ $< > $@
+	@$(ECHO) "Compiling $<..."
+	@$(CC) -c $(CFLAGS) -o $*.o $<
+
+%.d: %.S
+	@$(CC) -MM $(CFLAGS) -o $@ $< > $@
+	@$(ECHO) "Compiling $<..."
+	@$(CC) -c $(ASFLAGS) $(CFLAGS) -o $*.o $<
+
+#---------------------------------------------------------------------------
+# Explicit ruls
+#---------------------------------------------------------------------------
+$(GOAL): spca536.elf
+
+spca536.elf: $(OBJS:.o=.d) $(LIBS) $(OBJS) 
+	@$(CC) $(CFLAGS) -o spca536.elf $(OBJS) io.o $(LDFLAGS) \
+	$(LIBS) -lc -lg -lm \
+	-Wl,-Map,$(GOAL).map -Wl,--warn-common
+	@$(OBJCOPY) --output-target=binary -S -g -x -X \
+	-R .sbss -R .bss -R .reginfo spca536.elf spca536.bin
+	@cat magic.536 spca536.bin > spca536nand.bin
+	@$(ECHO) "*** Binary image is built successfully! ***"
+#	@$(OBJDUMP) -d spca536.elf > 536.asm
+	@mv spca536nand.bin ../31-05211.bin
+
+clean:
+	rm -rf $(OBJS:.o=.d) $(OBJS) $(GOAL) $(GOAL).map \
+	$(GOAL).text $(GOAL).bin $(GOAL).nm *.bin *.hex
+
+-include $(OBJS:.o=.d)
+
+#---------------------------------------------------------------------------
+# Implicit rules
+#---------------------------------------------------------------------------
